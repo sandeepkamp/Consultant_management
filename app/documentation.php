@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Doccumentation extends Model
+class documentation extends Model
 {
-    protected $table = 'process_managements';
 
-    public $fillable=[
+    protected $table = 'documentations';
 
+    public $fillable = [
         'order_id',
         'qm_planned_date',
         'qm_actual_date',
@@ -23,6 +23,6 @@ class Doccumentation extends Model
         'formo_planned_date',
         'formo_actual_date',
         'formo_comment',
-
+           
     ];
 }

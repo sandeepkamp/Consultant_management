@@ -42,7 +42,7 @@ class ProcessManagementController extends Controller
 
         $data = $request->all();
         $processmanagement = ProcessManagement::create($data);
-dd($processmanagement);
+          //dd($processmanagement);
         return redirect()->route('processmanagement.show', ['id'=> $processmanagement->id]);
 
     }
