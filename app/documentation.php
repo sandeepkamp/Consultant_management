@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class documentation extends Model
+class Documentation extends Model
 {
 
     protected $table = 'documentations';
+    protected $primaryKey = 'id';
 
     public $fillable = [
         'order_id',
@@ -25,4 +26,9 @@ class documentation extends Model
         'formo_comment',
            
     ];
+
+    public function documentations()
+    {
+      return $this->belongsTo('App\ProcessManagement','order_id');
+    }
 }

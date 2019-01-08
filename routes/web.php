@@ -18,4 +18,4 @@ Route::resource('customer', 'CustomerController');
 Route::resource('products','ProductController');
 Route::resource('agency','AgencyController');
 Route::resource('processmanagement','ProcessManagementController');
-Route::resource('doccument','DoccumentController');
+Route::resource('document','DocumentationController');

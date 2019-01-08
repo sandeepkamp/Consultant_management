@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ProcessManagement extends Model
 {
     protected $table = 'process_managements';
+    protected $primaryKey = 'id';
     
     public $fillable=[
 
@@ -21,7 +22,11 @@ class ProcessManagement extends Model
         'tender_date',
         'reference',
         'project_lead',
-
     ];
+
+    public function documentations() 
+    {
+       return $this->hasMany('App\Documentation','order_id');
+    }
 
 }
