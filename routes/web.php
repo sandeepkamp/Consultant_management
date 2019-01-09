@@ -19,3 +19,5 @@ Route::resource('products','ProductController');
 Route::resource('agency','AgencyController');
 Route::resource('processmanagement','ProcessManagementController');
 Route::resource('document','DocumentationController');
+Route::resource('audit','AuditController');
+Route::resource('assessment','AssessmentController');

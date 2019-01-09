@@ -22,6 +22,9 @@ class ProcessManagement extends Model
         'tender_date',
         'reference',
         'project_lead',
+        'start_plnd_dt',
+        'start_actual_dt',
+        'gap_assessment'
     ];
 
     public function documentations() 

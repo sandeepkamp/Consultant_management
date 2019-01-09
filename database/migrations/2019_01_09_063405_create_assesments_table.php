@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateInternalAuditsTable extends Migration
+class CreateAssesmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,15 @@ class CreateInternalAuditsTable extends Migration
      */
     public function up()
     {
-        Schema::create('internal_audits', function (Blueprint $table) {
+        Schema::create('assessments', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('order_id');
-            $table->date('audit_planned_date');
-            $table->date('audit_actual_date');
-            $table->string('audit_comment')->nullable();
+            $table->date('pre_assmnt_plnd_date');
+            $table->date('pre_assmt_actual_date');
+            $table->string('pre_assmt_comment')->nullable();
+            $table->date('final_assmt__plnd_date');
+            $table->date('final_assmt_actual_date');
+            $table->string('final_assmt_comment')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
@@ -34,6 +37,6 @@ class CreateInternalAuditsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('internal_audits');
+        Schema::dropIfExists('assesments');
     }
 }

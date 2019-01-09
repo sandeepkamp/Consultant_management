@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\ProcessManagement;
 use App\Documentation;
 use App\Implementation;
+use App\Audit;
+use App\Assessment;
 use DB;
 
 class ProcessManagementController extends Controller
@@ -22,7 +24,7 @@ class ProcessManagementController extends Controller
         return view('processmanagement.create');
     }
 
- /**
+  /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -49,9 +51,16 @@ class ProcessManagementController extends Controller
         $management_id = $processmanagement->id;
         $documentid = $this->document($management_id,$request);
         $implementationid = $this->implementation($management_id,$request);
+        $auditid = $this->audit($management_id,$request);
+        $assessment = $this->assessment($management_id,$request);
     }
 
-   private function document($management_id,$data)
+    /** 
+     *  Store data in 
+     *  documentation table
+    */
+
+    private function document($management_id,$data)
     {
         $document =  new Documentation();
         $document->order_id = $management_id;
@@ -71,7 +80,10 @@ class ProcessManagementController extends Controller
         $document->save();
     }
 
-
+    /** 
+     *  Store data in 
+     * implementation table
+    */
 
     private function implementation($management_id,$data)
     {
@@ -87,6 +99,63 @@ class ProcessManagementController extends Controller
       
         //dd($implementation);
         $implementation->save();
+    }
+
+   /** 
+     *  Store data in 
+     * internal Audit table
+    */
+
+    private function audit($management_id,$data)
+    {
+
+        $audit =  new Audit();
+        $audit->order_id = $management_id;
+        $audit->int_audit_plnd_date = $data->int_audit_plnd_date;
+        $audit->int_audit_actual_date = $data->int_audit_actual_date;
+        $audit->int_audit_comment = $data->int_audit_comment;
+        $audit->adequacy_audit_plnd_date = $data->adequacy_audit_plnd_date;
+        $audit->adequacy_audit_actual_date = $data->adequacy_audit_actual_date;
+        $audit->adequacy_audit_comment = $data->adequacy_audit_comment;
+      
+        //dd($internalaudit);
+        $audit->save();
+    }
+
+     /** 
+     *  Store data in 
+     * assessment table
+    */
+
+    private function assessment($management_id,$data)
+    {
+
+        $assessment =  new Assessment();
+        $assessment->order_id = $management_id;
+        $assessment->pre_assmnt_plnd_date = $data->pre_assmnt_plnd_date;
+        $assessment->pre_assmt_actual_date = $data->pre_assmt_actual_date;
+        $assessment->pre_assmt_comment = $data->pre_assmt_comment;
+        $assessment->final_assmt__plnd_date = $data->final_assmt__plnd_date;
+        $assessment->final_assmt_actual_date = $data->final_assmt_actual_date;
+        $assessment->final_assmt_comment = $data->final_assmt_comment;
+      
+        //dd($internalaudit);
+        $assessment->save();
+    }
+
+
+
+
+
+     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($management_id)
+    {
+       
     }
 
 }
