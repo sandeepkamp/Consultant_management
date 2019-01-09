@@ -13,5 +13,8 @@ class Audit extends Model
         'adequacy_audit_plnd_date',
         'adequacy_audit_actual_date',
         'adequacy_audit_comment',
+        'application_plnd_dt',
+        'application_actual_dt',
+        'application_comment',
     ];
 }

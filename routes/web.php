@@ -21,3 +21,4 @@ Route::resource('processmanagement','ProcessManagementController');
 Route::resource('document','DocumentationController');
 Route::resource('audit','AuditController');
 Route::resource('assessment','AssessmentController');
+Route::resource('payment','PaymentController');

@@ -8,6 +8,7 @@ use App\Documentation;
 use App\Implementation;
 use App\Audit;
 use App\Assessment;
+use App\Payment;
 use DB;
 
 class ProcessManagementController extends Controller
@@ -53,6 +54,7 @@ class ProcessManagementController extends Controller
         $implementationid = $this->implementation($management_id,$request);
         $auditid = $this->audit($management_id,$request);
         $assessment = $this->assessment($management_id,$request);
+        $payment = $this->payment($management_id,$request);
     }
 
     /** 
@@ -117,6 +119,9 @@ class ProcessManagementController extends Controller
         $audit->adequacy_audit_plnd_date = $data->adequacy_audit_plnd_date;
         $audit->adequacy_audit_actual_date = $data->adequacy_audit_actual_date;
         $audit->adequacy_audit_comment = $data->adequacy_audit_comment;
+        $audit->application_plnd_dt = $data->application_plnd_dt;
+        $audit->application_actual_dt = $data->application_actual_dt;
+        $audit->application_comment = $data->application_comment;
       
         //dd($internalaudit);
         $audit->save();
@@ -141,6 +146,37 @@ class ProcessManagementController extends Controller
       
         //dd($internalaudit);
         $assessment->save();
+    }
+
+    
+     /** 
+     *  Store data in 
+     * payment table
+    */
+
+    private function payment($management_id,$data)
+    {
+
+        $payment =  new Payment();
+        $payment->order_id = $management_id;
+        $payment->adv_plnd_dt = $data->adv_plnd_dt;
+        $payment->adv_act_dt = $data->adv_act_dt;
+        $payment->adv_remark = $data->adv_remark;
+        $payment->first_instal_plnd_dt = $data->first_instal_plnd_dt;
+        $payment->first_instal_act_dt = $data->first_instal_act_dt;
+        $payment->first_instal_remark = $data->first_instal_remark;
+        $payment->sec_instal_pl_dt = $data->sec_instal_pl_dt;
+        $payment->sec_instal_act_dt = $data->sec_instal_act_dt;
+        $payment->sec_instal_remark = $data->sec_instal_remark;
+        $payment->third_instal_pl_dt = $data->third_instal_pl_dt;
+        $payment->third_instal_act_dt = $data->third_instal_act_dt;
+        $payment->third_instal_remark = $data->third_instal_remark;
+        $payment->final_pay_pl_dt = $data->final_pay_pl_dt;
+        $payment->final_pay_act_dt = $data->final_pay_act_dt;
+        $payment->final_pay_remark = $data->final_pay_remark;
+      
+        //dd($internalaudit);
+        $payment->save();
     }
 
 
